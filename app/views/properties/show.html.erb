@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+ <h1>閲覧</h1>
+<p>
+  <strong>物件名:</strong>
+  <%= @property.property_name %>
+</p>
+
+<p>
+  <strong>賃料:</strong>
+  <%= @property.rent %>
+</p>
+
+<p>
+  <strong>住所:</strong>
+  <%= @property.address %>
+</p>
+
+<p>
+  <strong>築年数:</strong>
+  <%= @property.age %>
+</p>
+
+<p>
+  <strong>備考:</strong>
+  <%= @property.note %>
+</p>
+
+<% if @nearest_stations.present? %>
+  <hr>
+
+<% @nearest_stations.each_with_index do |nearest_station, i| %>
+  <h4>最寄り駅<%= i + 1 %></h4>
+    <div class="container">
+      <p>
+        <span class="bold">路線名</span>
+        <%= nearest_station.route_name %>
+      </p>
+      <p>
+        <span class="bold">駅名</span>
+        <%= nearest_station.station_name %>
+      </p>
+      <p>
+        <span class="bold">徒歩分数</span>
+        <%= "#{nearest_station.time}分" %>
+      </p>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to 'Edit', edit_property_path(@property) %> 
+<%= link_to 'Back', properties_path %>
+
